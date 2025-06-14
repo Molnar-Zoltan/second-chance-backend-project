@@ -14,11 +14,11 @@ app.use(express.static('public')) // It allows the frontend to use the backend's
 // app.use(express.static(path.join(__dirname, 'public')))
 
 // Connect to MongoDB; we just do this one time
-connectToDatabase().then(() => {
+connectToDatabase()
+  .then(() => {
     pinoLogger.info('Connected to DB')
-})
-    .catch((e) => console.error('Failed to connect to DB', e))
-
+  })
+  .catch((e) => console.error('Failed to connect to DB', e))
 
 app.use(express.json())
 
@@ -39,7 +39,8 @@ const logger = require('./logger')
 app.use(pinoHttp({ logger }))
 
 // Use Routes
-// authRoutes Step 2: add the authRoutes and to the server by using the app.use() method.
+
+// authRoutes Step 2: add the authRoutes to the server by using the app.use() method.
 app.use('/api/auth', authRoutes)
 
 // Items API Task 2: add the secondChanceItemsRoutes to the server by using the app.use() method.
@@ -50,14 +51,14 @@ app.use('/api/secondchance/search', searchRoutes)
 
 // Global Error Handler
 app.use((err, req, res) => {
-    console.error(err)
-    res.status(500).send('Internal Server Error')
-  })
+  console.error(err)
+  res.status(500).send('Internal Server Error')
+})
 
-  app.get('/', (req, res) => {
-    res.send('Inside the server')
-  })
+app.get('/', (req, res) => {
+  res.send('Inside the server')
+})
 
-  app.listen(port, () => {
-    console.log(`Server running on port ${port}`)
-  })
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`)
+})
