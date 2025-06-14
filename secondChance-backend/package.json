@@ -29,7 +29,6 @@
     "@testing-library/jest-dom": "^6.3.0",
     "@testing-library/react": "^14.1.2",
     "chai": "^4.3.10",
-    "eslint": "^9.29.0",
     "globals": "^16.2.0",
     "mocha": "^10.2.0",
     "nodemon": "^3.0.2",
