@@ -12,6 +12,9 @@ const app = express();
 app.use("*",cors());
 const port = 3060;
 
+app.use(express.static('public')); // It allows the frontend to use the backend's public folder (for example images)
+
+
 // Connect to MongoDB; we just do this one time
 connectToDatabase().then(() => {
     pinoLogger.info('Connected to DB');
@@ -54,7 +57,7 @@ app.use((err, req, res, next) => {
     res.status(500).send('Internal Server Error');
 });
 
-app.get("/",(req,res)=>{
+app.get("/",(req, res)=>{
     res.send("Inside the server")
 })
 
